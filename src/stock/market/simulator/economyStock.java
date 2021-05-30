@@ -6,8 +6,8 @@ public class economyStock extends stockProfile {
     private final double margin;
     
     // Class constructor
-    public economyStock(String c, String name, double m, double sPrice, double bPrice) {
-        super(name, sPrice, bPrice, m);
+    public economyStock(String c, String name, double m, double cPrice) {
+        super(name, cPrice, m);
         country = c;
         margin = m;
     }

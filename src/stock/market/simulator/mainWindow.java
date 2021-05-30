@@ -60,6 +60,8 @@ public class mainWindow {
     JTextArea stocksBoughtInfo;
     accountProfile accProfile;
     stockProfile[][] stocksProfiles;
+    
+    String priceTitle = "Price";
 
     // Class constructor
     public mainWindow(accountProfile account, stockProfile[][] profiles) {
@@ -113,7 +115,7 @@ public class mainWindow {
         currencyPanel.setBorder(currencyBorder);
 
         currencyPanel.add(new JLabel(""));
-        currencyPanel.add(new JLabel("Buy/Sell", SwingConstants.CENTER));
+        currencyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
         currencyPanel.add(new JLabel(""));
 
         currencyPanel.add(lblEURUSD);
@@ -165,7 +167,7 @@ public class mainWindow {
         companyPanel.setBorder(companyBorder);
 
         companyPanel.add(new JLabel(""));
-        companyPanel.add(new JLabel("Buy/Sell", SwingConstants.CENTER));
+        companyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
         companyPanel.add(new JLabel(""));
 
         companyPanel.add(lblfacebook);
@@ -184,13 +186,14 @@ public class mainWindow {
         companyPanel.add(textFields[1][3]);
         companyPanel.add(differenceTextFields[1][3]);
 
-        // ECONOMY STOCK PANEL
+        // Adding the currency panel and company panel into a new panel
         JPanel currencyCompanyHolder = new JPanel();
         currencyCompanyHolder.setLayout(new GridLayout(1, 2, 10, 0));
 
         currencyCompanyHolder.add(currencyPanel);
         currencyCompanyHolder.add(companyPanel);
 
+        // ECONOMY STOCK PANEL
         JLabel lbluk = new JLabel("FTSE 100", SwingConstants.CENTER);
         JLabel lblusa = new JLabel("Dow Jones", SwingConstants.CENTER);
         JLabel lblaus = new JLabel("$AUSSIE200", SwingConstants.CENTER);
@@ -223,7 +226,7 @@ public class mainWindow {
         economyPanel.setBorder(economyBorder);
 
         economyPanel.add(new JLabel(""));
-        economyPanel.add(new JLabel("Buy/Sell", SwingConstants.CENTER));
+        economyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
         economyPanel.add(new JLabel(""));
 
         economyPanel.add(lbluk);
@@ -241,16 +244,18 @@ public class mainWindow {
         economyPanel.add(lbljpy);
         economyPanel.add(textFields[2][3]);
         economyPanel.add(differenceTextFields[2][3]);
+        
+        // Adding the economy panel to a new (holder) panel
+        JPanel economyHolder = new JPanel();
+        economyHolder.setLayout(new FlowLayout(FlowLayout.CENTER));
+        economyHolder.add(economyPanel);
 
+        // Assign all the JTextFields a dimension
         for (JTextField[] textFieldArray : textFields) {
             for (JTextField textField : textFieldArray) {
                 textField.setSize(new Dimension(150, 20));
             }
         }
-
-        JPanel economyHolder = new JPanel();
-        economyHolder.setLayout(new FlowLayout(FlowLayout.CENTER));
-        economyHolder.add(economyPanel);
 
         JPanel stocksBought = new JPanel();
         Border stocksBoughtBorder = BorderFactory.createTitledBorder("Stocks Bought");
@@ -270,6 +275,7 @@ public class mainWindow {
 
         mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
+        // Code for the Button Bar at the Bottom
         JPanel buttonPanel = new JPanel();
         Border graphViewBorder = BorderFactory.createEtchedBorder();
         buttonPanel.setBorder(graphViewBorder);
@@ -333,7 +339,7 @@ public class mainWindow {
                 setDifferenceTextField(differenceTextFields[i][j], stock.getChange());
                 setTextFieldColour(differenceTextFields[i][j], stock.getChange());
 
-                writeRateToFile(stock.getProfileName(), stock.getBuyPrice());
+//                writeRateToFile(stock.getProfileName(), stock.getBuyPrice());
 
             }
         }
@@ -345,7 +351,7 @@ public class mainWindow {
     // Method to set the buy and sell rates for a stock
     public void setStockPriceTextField(JTextField field, stockProfile profile) {
         field.setText(
-                String.valueOf(profile.getBuyPrice()));
+                String.valueOf(profile.getCurrentPrice()));
 
     }
 
@@ -359,11 +365,11 @@ public class mainWindow {
     public void setStockBought() {
         ArrayList<stockProfile> stocksBought = accProfile.getStocks();
         int numOfStock = stocksBought.size();
-        String message = "STOCK NAME - BUY PRICE/SELL PRICE - Quantity\n";
+        String message = "STOCK NAME - PRICE - Quantity\n";
 
         for (int i = 0; i < numOfStock; i++) {
-            message = message + stocksBought.get(i).getProfileName() + " - " + stocksBought.get(i).getBuyPrice() + "/"
-                    + stocksBought.get(i).getSellPrice() + " - " + stocksBought.get(i).getQuantity() + "\n";
+            message = message + stocksBought.get(i).getProfileName() + " - " + stocksBought.get(i).getCurrentPrice() + "/"
+                    + " - " + stocksBought.get(i).getQuantity() + "\n";
         }
         
         message = message + "\nBALANCE: " + roundTo2DP(accProfile.getBalance());
@@ -380,26 +386,26 @@ public class mainWindow {
     }
 
     // Method to write the rate to its relavant file
-    public void writeRateToFile(String fileName, double rate) {
-
-        try {
-            String location = HISTORYFILEPATH + fileName + ".csv";
-
-            Calendar getTime = Calendar.getInstance();
-            SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-            String timeStamp = formatTime.format(getTime.getTime());
-
-            try (BufferedWriter write = new BufferedWriter(new FileWriter(location, true))) {
-                String lineToWrite = timeStamp + "," + rate;
-                write.write(lineToWrite);
-
-                write.newLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
-        }
-
-    }
+//    public void writeRateToFile(String fileName, double rate) {
+//
+//        try {
+//            String location = HISTORYFILEPATH + fileName + ".csv";
+//
+//            Calendar getTime = Calendar.getInstance();
+//            SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
+//            String timeStamp = formatTime.format(getTime.getTime());
+//
+//            try (BufferedWriter write = new BufferedWriter(new FileWriter(location, true))) {
+//                String lineToWrite = timeStamp + "," + rate;
+//                write.write(lineToWrite);
+//
+//                write.newLine();
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e);
+//        }
+//
+//    }
     
     // Rounding to 2 decimal place
     public static Double roundTo2DP(double number) {

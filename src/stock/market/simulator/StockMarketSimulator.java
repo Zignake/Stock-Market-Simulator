@@ -41,7 +41,7 @@ public class StockMarketSimulator {
                 window.setTextBoxValues(stockProfile);
 
             }
-        }, 0, 5000);
+        }, 0, 2000);
     }
 
     // Function to create an account profile for the user
@@ -74,10 +74,10 @@ public class StockMarketSimulator {
         for (stockProfile[] stockArray : stocks) {
             for (stockProfile stock : stockArray) {
                 priceChange = number.nextDouble() + 0.1;
-                int increaseORdecrease = number.nextInt(10) + 1;
+                int increaseORdecrease = number.nextInt(10);
 
                 stockToEdit = stock;
-                if (increaseORdecrease > 6) {
+                if (increaseORdecrease > 8) {
                     increasePrice(stockToEdit, priceChange);
 
                 } else {
@@ -90,31 +90,26 @@ public class StockMarketSimulator {
     }
 
     // Setting the stock rates once they have been recalculated
-    public static void setPriceChange(stockProfile profile, double sellChange, double buyChange) {
-        double difference = ((sellChange - profile.getSellPrice()) / profile.getSellPrice() * 100);
+    public static void setPriceChange(stockProfile profile, double buyChange) {
+        double difference = ((buyChange - profile.getCurrentPrice()) / profile.getCurrentPrice() * 100);
         profile.setChange(roundTo2DP(difference));
-        profile.setSellPrice(roundTo4DP(sellChange));
-        profile.setBuyPrice(roundTo4DP(buyChange));
+        profile.setCurrentPrice(roundTo4DP(buyChange));
 
     }
 
     // Calculating an increase in stock price
     public static void increasePrice(stockProfile profile, double priceChange) {
-        double sellChange = priceChange
-                + (profile.getSellPrice() + ((profile.getSellPrice() * profile.getMargin()) / 2));
-        double buyChange = priceChange + (profile.getBuyPrice() + ((profile.getBuyPrice() * profile.getMargin()) / 2));
+        double buyChange = priceChange + (profile.getCurrentPrice() + ((profile.getCurrentPrice() * profile.getMargin()) / 2));
 
-        setPriceChange(profile, sellChange, buyChange);
+        setPriceChange(profile, buyChange);
 
     }
 
     // Calculating a decrease in stock price
     public static void decreasePrice(stockProfile profile, double priceChange) {
-        double sellChange = priceChange
-                + (profile.getSellPrice() - ((profile.getSellPrice() * profile.getMargin()) / 2));
-        double buyChange = priceChange + (profile.getBuyPrice() + ((profile.getBuyPrice() * profile.getMargin()) / 2));
+        double buyChange = priceChange + (profile.getCurrentPrice() + ((profile.getCurrentPrice() * profile.getMargin()) / 2));
 
-        setPriceChange(profile, sellChange, buyChange);
+        setPriceChange(profile, buyChange);
 
     }
 
@@ -160,7 +155,7 @@ public class StockMarketSimulator {
         currencyStock[] stocks = new currencyStock[from_To.length];
 
         for (int i = 0; i < from_To.length; i++) {
-            stocks[i] = new currencyStock(from_To[i][0], from_To[i][1], price[i][0], price[i][1]);
+            stocks[i] = new currencyStock(from_To[i][0], from_To[i][1], price[i][0]);
 
         }
 
@@ -173,7 +168,7 @@ public class StockMarketSimulator {
 
         for (int i = 0; i < companyName.length; i++) {
 
-            stocks[i] = new companyStock(companyName[i], margin[i], price[i][0], price[i][1]);
+            stocks[i] = new companyStock(companyName[i], margin[i], price[i][0]);
 
         }
 
@@ -187,7 +182,7 @@ public class StockMarketSimulator {
 
         for (int i = 0; i < countryName.length; i++) {
 
-            stocks[i] = new economyStock(countryName[i], stockName[i], margin[i], price[i][0], price[i][1]);
+            stocks[i] = new economyStock(countryName[i], stockName[i], margin[i], price[i][0]);
 
         }
 

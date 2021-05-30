@@ -3,25 +3,22 @@ package stock.market.simulator;
 public class stockProfile {
 
     private final String profileName;
-    private double buyPrice;
-    private double sellPrice;
+    private double currentPrice;
     private double change;
     private double margin;
     private int quantity;
 
     // Class constructor for stock that has been bought 
-    public stockProfile(String pName, double sPrice, double bPrice, int quant) {
+    public stockProfile(String pName, double cPrice, int quant) {
         profileName = pName;
-        buyPrice = bPrice;
-        sellPrice = sPrice;
+        currentPrice = cPrice;
         quantity = quant;
     }
 
     // Class constructor for all stocks when program is launched
-    public stockProfile(String pName, double sPrice, double bPrice, double m) {
+    public stockProfile(String pName, double cPrice, double m) {
         profileName = pName;
-        buyPrice = bPrice;
-        sellPrice = sPrice;
+        currentPrice = cPrice;
         margin = m;
         change = 0;
     }
@@ -41,24 +38,14 @@ public class stockProfile {
         return profileName;
     }
 
-    // Method to retrieve the buy price
-    public double getBuyPrice() {
-        return buyPrice;
-    }
-
-    // Method to retrieve the sell price
-    public double getSellPrice() {
-        return sellPrice;
-    }
+    // Method to retrieve the current price
+    public double getCurrentPrice() {
+        return currentPrice;
+    }  
 
     // Method to set the buy price
-    public void setBuyPrice(double bPrice) {
-        buyPrice = bPrice;
-    }
-
-    // Method to set the sell price
-    public void setSellPrice(double sPrice) {
-        sellPrice = sPrice;
+    public void setCurrentPrice(double cPrice) {
+        currentPrice = cPrice;
     }
 
     // Method to get the margin

@@ -116,11 +116,10 @@ public class buy_sellShare {
 
     // Method that called when user wants to buy a stock
     public void buyStock(stockProfile profile, int quantity) {
-        double price = profile.getBuyPrice() * quantity;
+        double price = profile.getCurrentPrice() * quantity;
 
         if (price < accProfile.getBalance()) {
-            stockProfile stock = new stockProfile(profile.getProfileName(),
-                    profile.getSellPrice(), profile.getBuyPrice(), quantity);
+            stockProfile stock = new stockProfile(profile.getProfileName(), profile.getCurrentPrice(), quantity);
             accProfile.setBalance(-price);
             accProfile.addStock(stock);
 
@@ -139,7 +138,7 @@ public class buy_sellShare {
 
         if (quantity <= profile.getQuantity()) {
 
-            double price = profile.getSellPrice() * quantity;
+            double price = profile.getCurrentPrice() * quantity;
             accProfile.setBalance(+price);
             if (quantity == profile.getQuantity()) {
                 accProfile.removeStock(profile);

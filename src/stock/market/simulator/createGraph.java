@@ -19,7 +19,7 @@ import org.jfree.chart.plot.*;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import static stock.market.simulator.StockMarketSimulator.HISTORYFILEPATH;
+import static stock.market.simulator.StockMarketSimulator.DATAFILEPATH;
 
 public class createGraph {
 
@@ -90,7 +90,7 @@ public class createGraph {
         XYSeriesCollection dataSet = new XYSeriesCollection();
         XYSeries series = new XYSeries("Price");
 
-        BufferedReader readData = new BufferedReader(new FileReader(HISTORYFILEPATH + fileName + ".csv"));
+        BufferedReader readData = new BufferedReader(new FileReader(DATAFILEPATH + fileName + ".csv"));
 
         String line;
 

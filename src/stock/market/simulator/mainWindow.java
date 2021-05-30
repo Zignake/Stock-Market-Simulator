@@ -11,48 +11,34 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.border.Border;
 import java.util.*;
-import static stock.market.simulator.StockMarketSimulator.HISTORYFILEPATH;
 
 public class mainWindow {
 
-    // CURRENCY STOCK TEXT FIELDS
-    JTextField EURUSD;
-    JTextField diffEURUSD;
+    // CRYPTO STOCK TEXT FIELDS
+    JTextField BTCUSDT;
+    JTextField diffBTCUSDT;
 
-    JTextField GBPUSD;
-    JTextField diffGBPUSD;
+    JTextField ETHUSDT;
+    JTextField diffETHUSDT;
 
-    JTextField EURGBP;
-    JTextField diffEURGBP;
+    JTextField BNBUSDT;
+    JTextField diffGBNBUSDT;
 
-    JTextField GBPJPY;
-    JTextField diffGBPJPY;
+    JTextField MATICUSDT;
+    JTextField diffMATICUSDT;
 
-    // COMPANY STOCK TEXT FIELDS
-    JTextField facebook;
-    JTextField difffacebook;
+    // INDIAN STOCK TEXT FIELDS
+    JTextField TATAMOTORS;
+    JTextField diffTATMOT;
 
-    JTextField apple;
-    JTextField diffapple;
+    JTextField BEL;
+    JTextField diffBEL;
 
-    JTextField microsoft;
-    JTextField diffmicrosoft;
+    JTextField RELIANCE;
+    JTextField diffRELIANCE;
 
-    JTextField bmw;
-    JTextField diffbmw;
-
-    // ECONOMY STOCK TEXT FIELDS
-    JTextField uk;
-    JTextField diffuk;
-
-    JTextField usa;
-    JTextField diffusa;
-
-    JTextField aus;
-    JTextField diffaus;
-
-    JTextField jpy;
-    JTextField diffjpy;
+    JTextField LT;
+    JTextField diffLT;
 
     JTextField[][] textFields;
     JTextField[][] differenceTextFields;
@@ -60,7 +46,7 @@ public class mainWindow {
     JTextArea stocksBoughtInfo;
     accountProfile accProfile;
     stockProfile[][] stocksProfiles;
-    
+
     String priceTitle = "Price";
 
     // Class constructor
@@ -74,115 +60,115 @@ public class mainWindow {
         JFrame frame = new JFrame("Stock Simulator");
         frame.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 20));
 
-        textFields = new JTextField[3][4];
-        differenceTextFields = new JTextField[3][4];
+        textFields = new JTextField[2][4];
+        differenceTextFields = new JTextField[2][4];
 
         JPanel stockInfo = new JPanel();
         Border stockInfoBorder = BorderFactory.createTitledBorder("STOCK INFORMATION");
         stockInfo.setBorder(stockInfoBorder);
-        stockInfo.setLayout(new GridLayout(2, 0, 10, 0));
+        stockInfo.setLayout(new GridLayout(1, 0, 10, 0));
 
-        // CURRENCY STOCK PANEL
-        JLabel lblEURUSD = new JLabel("EUR/USD", SwingConstants.CENTER);
-        JLabel lblGBPUSD = new JLabel("GBP/USD", SwingConstants.CENTER);
-        JLabel lblEURGBP = new JLabel("EUR/GBP", SwingConstants.CENTER);
-        JLabel lblGBPJPY = new JLabel("GBP/JPY", SwingConstants.CENTER);
+        // CRYPTO STOCK PANEL
+        JLabel lblBTCUSDT = new JLabel("BTC/USDT", SwingConstants.CENTER);
+        JLabel lblETHUSDT = new JLabel("ETH/USDT", SwingConstants.CENTER);
+        JLabel lblBNBUSDT = new JLabel("BNB/USDT", SwingConstants.CENTER);
+        JLabel lblMATICUSDT = new JLabel("MATIC/USDT", SwingConstants.CENTER);
 
-        EURUSD = new JTextField("");
-        GBPUSD = new JTextField("");
-        EURGBP = new JTextField("");
-        GBPJPY = new JTextField("");
+        BTCUSDT = new JTextField("");
+        ETHUSDT = new JTextField("");
+        BNBUSDT = new JTextField("");
+        MATICUSDT = new JTextField("");
 
-        textFields[0][0] = EURUSD;
-        textFields[0][1] = GBPUSD;
-        textFields[0][2] = EURGBP;
-        textFields[0][3] = GBPJPY;
+        textFields[0][0] = BTCUSDT;
+        textFields[0][1] = ETHUSDT;
+        textFields[0][2] = BNBUSDT;
+        textFields[0][3] = MATICUSDT;
 
-        diffEURUSD = new JTextField("");
-        diffGBPUSD = new JTextField("");
-        diffEURGBP = new JTextField("");
-        diffGBPJPY = new JTextField("");
+        diffBTCUSDT = new JTextField("");
+        diffETHUSDT = new JTextField("");
+        diffGBNBUSDT = new JTextField("");
+        diffMATICUSDT = new JTextField("");
 
-        differenceTextFields[0][0] = diffEURUSD;
-        differenceTextFields[0][1] = diffGBPUSD;
-        differenceTextFields[0][2] = diffEURGBP;
-        differenceTextFields[0][3] = diffGBPJPY;
+        differenceTextFields[0][0] = diffBTCUSDT;
+        differenceTextFields[0][1] = diffETHUSDT;
+        differenceTextFields[0][2] = diffGBNBUSDT;
+        differenceTextFields[0][3] = diffMATICUSDT;
 
         JPanel currencyPanel = new JPanel();
         currencyPanel.setLayout(new GridLayout(5, 3, 5, 5));
 
-        Border currencyBorder = BorderFactory.createTitledBorder("Currency Stock");
+        Border currencyBorder = BorderFactory.createTitledBorder("Crypto Stock");
         currencyPanel.setBorder(currencyBorder);
 
         currencyPanel.add(new JLabel(""));
         currencyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
         currencyPanel.add(new JLabel(""));
 
-        currencyPanel.add(lblEURUSD);
+        currencyPanel.add(lblBTCUSDT);
         currencyPanel.add(textFields[0][0]);
         currencyPanel.add(differenceTextFields[0][0]);
 
-        currencyPanel.add(lblGBPUSD);
+        currencyPanel.add(lblETHUSDT);
         currencyPanel.add(textFields[0][1]);
         currencyPanel.add(differenceTextFields[0][1]);
 
-        currencyPanel.add(lblEURGBP);
+        currencyPanel.add(lblBNBUSDT);
         currencyPanel.add(textFields[0][2]);
         currencyPanel.add(differenceTextFields[0][2]);
 
-        currencyPanel.add(lblGBPJPY);
+        currencyPanel.add(lblMATICUSDT);
         currencyPanel.add(textFields[0][3]);
         currencyPanel.add(differenceTextFields[0][3]);
 
-        // COMPANY STOCK PANEL
-        JLabel lblfacebook = new JLabel("Facebook", SwingConstants.CENTER);
-        JLabel lblapple = new JLabel("Apple", SwingConstants.CENTER);
-        JLabel lblmicrosoft = new JLabel("Microsoft", SwingConstants.CENTER);
-        JLabel lblbmw = new JLabel("BMW", SwingConstants.CENTER);
+        // INDIAN STOCK PANEL
+        JLabel lbltatmot = new JLabel("TATAMOTORS", SwingConstants.CENTER);
+        JLabel lblbel = new JLabel("BEL", SwingConstants.CENTER);
+        JLabel lblreliance = new JLabel("RELIANCE", SwingConstants.CENTER);
+        JLabel lbllt = new JLabel("LT", SwingConstants.CENTER);
 
-        facebook = new JTextField("");
-        apple = new JTextField("");
-        microsoft = new JTextField("");
-        bmw = new JTextField("");
+        TATAMOTORS = new JTextField("");
+        BEL = new JTextField("");
+        RELIANCE = new JTextField("");
+        LT = new JTextField("");
 
-        textFields[1][0] = facebook;
-        textFields[1][1] = apple;
-        textFields[1][2] = microsoft;
-        textFields[1][3] = bmw;
+        textFields[1][0] = TATAMOTORS;
+        textFields[1][1] = BEL;
+        textFields[1][2] = RELIANCE;
+        textFields[1][3] = LT;
 
-        difffacebook = new JTextField("");
-        diffapple = new JTextField("");
-        diffmicrosoft = new JTextField("");
-        diffbmw = new JTextField("");
+        diffTATMOT = new JTextField("");
+        diffBEL = new JTextField("");
+        diffRELIANCE = new JTextField("");
+        diffLT = new JTextField("");
 
-        differenceTextFields[1][0] = difffacebook;
-        differenceTextFields[1][1] = diffapple;
-        differenceTextFields[1][2] = diffmicrosoft;
-        differenceTextFields[1][3] = diffbmw;
+        differenceTextFields[1][0] = diffTATMOT;
+        differenceTextFields[1][1] = diffBEL;
+        differenceTextFields[1][2] = diffRELIANCE;
+        differenceTextFields[1][3] = diffLT;
 
         JPanel companyPanel = new JPanel();
         companyPanel.setLayout(new GridLayout(5, 3, 5, 5));
 
-        Border companyBorder = BorderFactory.createTitledBorder("Company Stock");
+        Border companyBorder = BorderFactory.createTitledBorder("Indian Stock");
         companyPanel.setBorder(companyBorder);
 
         companyPanel.add(new JLabel(""));
         companyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
         companyPanel.add(new JLabel(""));
 
-        companyPanel.add(lblfacebook);
+        companyPanel.add(lbltatmot);
         companyPanel.add(textFields[1][0]);
         companyPanel.add(differenceTextFields[1][0]);
 
-        companyPanel.add(lblapple);
+        companyPanel.add(lblbel);
         companyPanel.add(textFields[1][1]);
         companyPanel.add(differenceTextFields[1][1]);
 
-        companyPanel.add(lblmicrosoft);
+        companyPanel.add(lblreliance);
         companyPanel.add(textFields[1][2]);
         companyPanel.add(differenceTextFields[1][2]);
 
-        companyPanel.add(lblbmw);
+        companyPanel.add(lbllt);
         companyPanel.add(textFields[1][3]);
         companyPanel.add(differenceTextFields[1][3]);
 
@@ -193,63 +179,6 @@ public class mainWindow {
         currencyCompanyHolder.add(currencyPanel);
         currencyCompanyHolder.add(companyPanel);
 
-        // ECONOMY STOCK PANEL
-        JLabel lbluk = new JLabel("FTSE 100", SwingConstants.CENTER);
-        JLabel lblusa = new JLabel("Dow Jones", SwingConstants.CENTER);
-        JLabel lblaus = new JLabel("$AUSSIE200", SwingConstants.CENTER);
-        JLabel lbljpy = new JLabel("NIKKEI 225", SwingConstants.CENTER);
-
-        uk = new JTextField("");
-        usa = new JTextField("");
-        aus = new JTextField("");
-        jpy = new JTextField("");
-
-        textFields[2][0] = uk;
-        textFields[2][1] = usa;
-        textFields[2][2] = aus;
-        textFields[2][3] = jpy;
-
-        diffuk = new JTextField("");
-        diffusa = new JTextField("");
-        diffaus = new JTextField("");
-        diffjpy = new JTextField("");
-
-        differenceTextFields[2][0] = diffuk;
-        differenceTextFields[2][1] = diffusa;
-        differenceTextFields[2][2] = diffaus;
-        differenceTextFields[2][3] = diffjpy;
-
-        JPanel economyPanel = new JPanel();
-        economyPanel.setLayout(new GridLayout(6, 3, 5, 5));
-
-        Border economyBorder = BorderFactory.createTitledBorder("Economy Stock");
-        economyPanel.setBorder(economyBorder);
-
-        economyPanel.add(new JLabel(""));
-        economyPanel.add(new JLabel(priceTitle, SwingConstants.CENTER));
-        economyPanel.add(new JLabel(""));
-
-        economyPanel.add(lbluk);
-        economyPanel.add(textFields[2][0]);
-        economyPanel.add(differenceTextFields[2][0]);
-
-        economyPanel.add(lblusa);
-        economyPanel.add(textFields[2][1]);
-        economyPanel.add(differenceTextFields[2][1]);
-
-        economyPanel.add(lblaus);
-        economyPanel.add(textFields[2][2]);
-        economyPanel.add(differenceTextFields[2][2]);
-
-        economyPanel.add(lbljpy);
-        economyPanel.add(textFields[2][3]);
-        economyPanel.add(differenceTextFields[2][3]);
-        
-        // Adding the economy panel to a new (holder) panel
-        JPanel economyHolder = new JPanel();
-        economyHolder.setLayout(new FlowLayout(FlowLayout.CENTER));
-        economyHolder.add(economyPanel);
-
         // Assign all the JTextFields a dimension
         for (JTextField[] textFieldArray : textFields) {
             for (JTextField textField : textFieldArray) {
@@ -257,15 +186,15 @@ public class mainWindow {
             }
         }
 
+        // Create a Panel to display your portfolio
         JPanel stocksBought = new JPanel();
-        Border stocksBoughtBorder = BorderFactory.createTitledBorder("Stocks Bought");
+        Border stocksBoughtBorder = BorderFactory.createTitledBorder("YOUR PORTFOLIO");
         stocksBought.setBorder(stocksBoughtBorder);
 
         stocksBoughtInfo = new JTextArea(15, 30);
         stocksBought.add(stocksBoughtInfo);
 
         stockInfo.add(currencyCompanyHolder, BorderLayout.CENTER);
-        stockInfo.add(economyHolder, BorderLayout.PAGE_END);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(1, 2));
@@ -290,7 +219,7 @@ public class mainWindow {
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonPanel.add(btnBuySell);
         buttonPanel.add(btnShowGraph);
-        //buttonPanel.setPreferredSize(new Dimension(110, 75));
+        // buttonPanel.setPreferredSize(new Dimension(110, 75));
 
         frame.add(mainPanel);
         frame.add(buttonPanel);
@@ -326,7 +255,7 @@ public class mainWindow {
         }
 
     }
-    
+
     // Method to set the values of the text boxes with the stock prices
     public void setTextBoxValues(stockProfile[][] stocksProfiles) {
 
@@ -339,8 +268,6 @@ public class mainWindow {
                 setDifferenceTextField(differenceTextFields[i][j], stock.getChange());
                 setTextFieldColour(differenceTextFields[i][j], stock.getChange());
 
-//                writeRateToFile(stock.getProfileName(), stock.getBuyPrice());
-
             }
         }
 
@@ -350,8 +277,7 @@ public class mainWindow {
 
     // Method to set the buy and sell rates for a stock
     public void setStockPriceTextField(JTextField field, stockProfile profile) {
-        field.setText(
-                String.valueOf(profile.getCurrentPrice()));
+        field.setText(String.valueOf(profile.getCurrentPrice()));
 
     }
 
@@ -368,10 +294,10 @@ public class mainWindow {
         String message = "STOCK NAME - PRICE - Quantity\n";
 
         for (int i = 0; i < numOfStock; i++) {
-            message = message + stocksBought.get(i).getProfileName() + " - " + stocksBought.get(i).getCurrentPrice() + "/"
-                    + " - " + stocksBought.get(i).getQuantity() + "\n";
+            message = message + stocksBought.get(i).getProfileName() + " - " + stocksBought.get(i).getCurrentPrice()
+                    + "/" + " - " + stocksBought.get(i).getQuantity() + "\n";
         }
-        
+
         message = message + "\nBALANCE: " + roundTo2DP(accProfile.getBalance());
         stocksBoughtInfo.setText(message);
     }
@@ -385,28 +311,6 @@ public class mainWindow {
         }
     }
 
-    // Method to write the rate to its relavant file
-//    public void writeRateToFile(String fileName, double rate) {
-//
-//        try {
-//            String location = HISTORYFILEPATH + fileName + ".csv";
-//
-//            Calendar getTime = Calendar.getInstance();
-//            SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-//            String timeStamp = formatTime.format(getTime.getTime());
-//
-//            try (BufferedWriter write = new BufferedWriter(new FileWriter(location, true))) {
-//                String lineToWrite = timeStamp + "," + rate;
-//                write.write(lineToWrite);
-//
-//                write.newLine();
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e);
-//        }
-//
-//    }
-    
     // Rounding to 2 decimal place
     public static Double roundTo2DP(double number) {
         DecimalFormat roundFormat = new DecimalFormat(".##");

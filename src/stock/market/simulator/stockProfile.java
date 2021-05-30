@@ -4,8 +4,8 @@ public class stockProfile {
 
     private final String profileName;
     private double currentPrice;
+    private double startPrice;
     private double change;
-    private double margin;
     private int quantity;
 
     // Class constructor for stock that has been bought 
@@ -16,11 +16,10 @@ public class stockProfile {
     }
 
     // Class constructor for all stocks when program is launched
-    public stockProfile(String pName, double cPrice, double m) {
+    public stockProfile(String pName, double cPrice) {
         profileName = pName;
         currentPrice = cPrice;
-        margin = m;
-        change = 0;
+//        startPrice = sPrice;
     }
 
     // Method to retrieve the quatity of stocks bought
@@ -48,10 +47,6 @@ public class stockProfile {
         currentPrice = cPrice;
     }
 
-    // Method to get the margin
-    public double getMargin() {
-        return margin;
-    }
 
     // Method to set the change in current and previous rate
     public void setChange(double c) {
@@ -61,5 +56,15 @@ public class stockProfile {
     // Method to get the change in current and previous rate
     public double getChange() {
         return change;
+    }
+    
+    // Method to set the Starting Price
+    public void setStartPrice(double sPrice) {
+        startPrice = sPrice;
+    }
+    
+    // Method to get the Starting Price
+    public double getStartPrice() {
+        return startPrice;
     }
 }
